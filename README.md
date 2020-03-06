@@ -75,8 +75,8 @@ Add this block to your `.gitlab-ci.yml`:
 markdownlint:
   stage: lint
   variables:
-    markdownlint-cli_version: "0.22.0"
-  image: peterdavehello/markdownlint:$markdownlint-cli_version
+    markdownlint_cli_version: "0.22.0"
+  image: peterdavehello/markdownlint:$markdownlint_cli_version
   only:
     changes:
       - "**/*.md"
