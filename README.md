@@ -30,18 +30,18 @@ Dockerized [markdownlint-cli](https://github.com/igorshubovych/markdownlint-cli)
 Without speicifying a image tag, the `latest` tag will be used as the latest version of markdownlint-cli:
 
 ```sh
-docker run -v $PWD:/md peterdavehello/markdownlint markdownlint '**/*.md'
+docker run -v $PWD:/md peterdavehello/markdownlint markdownlint .
 ```
 
 - Replace `$PWD` with path of markdown files, `$PWD` means the current working directory.
-- Replace `'**/*.md'` with the specify the file filename, if you don't want to scan all the md files.
+- If you don't want to scan all the markdown files recursively, replace `.` with the specify the file path and name.
 
 #### Use specific version
 
 Just like above, but specify a version tag of markdownlint-cli, for example, `0.22.0`:
 
 ```sh
-docker run -v $PWD:/md peterdavehello/markdownlint:0.22.0 markdownlint '**/*.md'
+docker run -v $PWD:/md peterdavehello/markdownlint:0.22.0 markdownlint .
 ```
 
 ### Continuous Integration (CI)
@@ -82,7 +82,7 @@ markdownlint:
       - "**/*.md"
       - "**/*.markdown"
   script:
-    - markdownlint '**/*.md' '**/*.markdown'
+    - markdownlint .
 ```
 
 ## markdownlint cli usage
