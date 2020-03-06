@@ -1,0 +1,47 @@
+---
+
+dist: bionic
+
+services:
+  - docker
+
+stages:
+  - Static test
+  - Build test
+
+jobs:
+  include:
+    - stage: Static test
+      env:
+        - Test: markdownlint
+      language: minimal
+      script:
+        - docker run --rm -v $PWD:/md peterdavehello/markdownlint markdownlint '**/*.md'
+
+    - stage: Static test
+      env:
+        - Test: hadolint
+      language: minimal
+      script:
+        - docker run --rm -i hadolint/hadolint < Dockerfile
+
+    - stage: Static test
+      env:
+        - Test: dockerfile_lint
+      language: node_js
+      node_js:
+        - "12"
+      script:
+        - npx --cache .npx dockerfile_lint
+      cache:
+        directories:
+          - .npx
+
+    - stage: Build test
+      language: minimal
+      before_script:
+        - LATEST_MARKDOWNLINT="$(curl https://registry.npmjs.org/markdownlint-cli -so- | jq -r '.["dist-tags"].latest')"
+      script:
+        - docker build --build-arg MARKDOWNLINT_CLI_VER="$LATEST_MARKDOWNLINT" -t docker-markdownlint:$TRAVIS_COMMIT .
+      after_success:
+        - docker run --rm docker-markdownlint:$TRAVIS_COMMIT markdownlint --help

@@ -1,0 +1,7 @@
+#!/bin/sh
+
+if [ "latest" = "$DOCKER_TAG" ]; then
+    DOCKER_TAG=$(curl https://registry.npmjs.org/markdownlint-cli -sLo- | grep -Po '"latest":"\d+\.\d+\.\d+"' | awk -F'"' '{print $4}')
+fi
+
+docker build --build-arg MARKDOWNLINT_CLI_VER="$DOCKER_TAG" -f "$DOCKERFILE_PATH" -t "$IMAGE_NAME" .
