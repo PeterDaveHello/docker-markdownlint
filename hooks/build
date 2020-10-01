@@ -1,7 +1,9 @@
 #!/bin/sh
 
-if [ "latest" = "$DOCKER_TAG" ]; then
-    DOCKER_TAG=$(curl https://registry.npmjs.org/markdownlint-cli -sLo- | grep -Po '"latest":"\d+\.\d+\.\d+"' | awk -F'"' '{print $4}')
+if [ "latest" = "$DOCKER_TAG" ] && [ "master" = "$SOURCE_BRANCH" ]; then
+    MARKDOWNLINT_CLI_VER=$(curl https://registry.npmjs.org/markdownlint-cli -sLo- | grep -Po '"latest":"\d+\.\d+\.\d+"' | awk -F'"' '{print $4}')
+else
+    MARKDOWNLINT_CLI_VER="$SOURCE_BRANCH"
 fi
 
-docker build --build-arg MARKDOWNLINT_CLI_VER="$DOCKER_TAG" -f "$DOCKERFILE_PATH" -t "$IMAGE_NAME" .
+docker build --build-arg MARKDOWNLINT_CLI_VER="$MARKDOWNLINT_CLI_VER" -f "$DOCKERFILE_PATH" -t "$IMAGE_NAME" .
