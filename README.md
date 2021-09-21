@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.com/PeterDaveHello/docker-markdownlint.svg?branch=master)](https://travis-ci.com/PeterDaveHello/docker-markdownlint)
 [![Docker Hub pulls](https://img.shields.io/docker/pulls/peterdavehello/markdownlint.svg)](https://hub.docker.com/r/peterdavehello/markdownlint/)
-[![Docker image layers](https://images.microbadger.com/badges/image/peterdavehello/markdownlint.svg)](https://microbadger.com/images/peterdavehello/markdownlint/)
-[![Docker image version](https://images.microbadger.com/badges/version/peterdavehello/markdownlint.svg)](https://hub.docker.com/r/peterdavehello/markdownlint/tags/)
 
 [![Docker Hub badge](http://dockeri.co/image/peterdavehello/markdownlint)](https://hub.docker.com/r/peterdavehello/markdownlint/)
 
