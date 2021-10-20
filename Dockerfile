@@ -1,4 +1,4 @@
-FROM node:16-alpine3.14
+FROM node:17-alpine3.14
 
 ARG MARKDOWNLINT_CLI_VER
 ENV npm_config_loglevel=silent
