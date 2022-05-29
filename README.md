@@ -1,6 +1,6 @@
 # docker-markdownlint
 
-[![Build Status](https://travis-ci.com/PeterDaveHello/docker-markdownlint.svg?branch=master)](https://travis-ci.com/PeterDaveHello/docker-markdownlint)
+[![Build Status](https://app.travis-ci.com/PeterDaveHello/docker-markdownlint.svg?branch=master)](https://app.travis-ci.com/PeterDaveHello/docker-markdownlint)
 [![Docker Hub pulls](https://img.shields.io/docker/pulls/peterdavehello/markdownlint.svg)](https://hub.docker.com/r/peterdavehello/markdownlint/)
 
 [![Docker Hub badge](http://dockeri.co/image/peterdavehello/markdownlint)](https://hub.docker.com/r/peterdavehello/markdownlint/)
