@@ -36,10 +36,10 @@ docker run -v $PWD:/md peterdavehello/markdownlint markdownlint .
 
 #### Use specific version
 
-Just like above, but specify a version tag of markdownlint-cli, for example, `0.22.0`:
+Just like above, but specify a version tag of markdownlint-cli, for example, `0.35.0`:
 
 ```sh
-docker run -v $PWD:/md peterdavehello/markdownlint:0.22.0 markdownlint .
+docker run -v $PWD:/md peterdavehello/markdownlint:0.35.0 markdownlint .
 ```
 
 ### Continuous Integration (CI)
@@ -60,7 +60,7 @@ services:
   - docker
 
 scripts:
-  - docker run -v $TRAVIS_BUILD_DIR:/md peterdavehello/markdownlint:0.22.0 markdownlint example.md
+  - docker run -v $TRAVIS_BUILD_DIR:/md peterdavehello/markdownlint:0.35.0 markdownlint example.md
 ```
 
 This will lint a example markdown file called `example.md`
@@ -73,7 +73,7 @@ Add this block to your `.gitlab-ci.yml`:
 markdownlint:
   stage: lint
   variables:
-    markdownlint_cli_version: "0.22.0"
+    markdownlint_cli_version: "0.35.0"
   image: peterdavehello/markdownlint:$markdownlint_cli_version
   only:
     changes:
@@ -97,15 +97,20 @@ You'll get the output like below:
   MarkdownLint Command Line Interface
 
   Options:
-
-    -h, --help                                  output usage information
     -V, --version                               output the version number
+    -c, --config [configFile]                   configuration file (JSON, JSONC, JS, or YAML)
+    -d, --dot                                   include files/folders with a dot (for example `.github`)
     -f, --fix                                   fix basic errors (does not work with STDIN)
-    -s, --stdin                                 read from STDIN (does not work with files)
+    -i, --ignore [file|directory|glob]          file(s) to ignore/exclude (default: [])
+    -j, --json                                  write issues in json format
     -o, --output [outputFile]                   write issues to file (no console)
-    -c, --config [configFile]                   configuration file (JSON, JSONC, or YAML)
-    -i, --ignore [file|directory|glob]          files to ignore/exclude
-    -r, --rules  [file|directory|glob|package]  custom rule files
+    -p, --ignore-path [file]                    path to file with ignore pattern(s)
+    -q, --quiet                                 do not write issues to STDOUT
+    -r, --rules  [file|directory|glob|package]  include custom rule files (default: [])
+    -s, --stdin                                 read from STDIN (does not work with files)
+    --enable [rules...]                         Enable certain rules, e.g. --enable MD013 MD041 --
+    --disable [rules...]                        Disable certain rules, e.g. --disable MD013 MD041 --
+    -h, --help                                  display help for command
 ```
 
 For more details, check out the [markdownlint-cli project](https://www.npmjs.com/package/markdownlint-cli) page.
@@ -115,7 +120,7 @@ For more details, check out the [markdownlint-cli project](https://www.npmjs.com
 Build command, you need to specify a valid markdownlint version argument to `MARKDOWNLINT_CLI_VER`:
 
 ```sh
-docker build --build-arg MARKDOWNLINT_CLI_VER="0.22.0" -t docker-markdownlint .
+docker build --build-arg MARKDOWNLINT_CLI_VER="0.35.0" -t docker-markdownlint .
 
 # Replace "docker-markdownlint" with the preferred image name
 ```
